@@ -1,3 +1,5 @@
+import AddToBag from "@/app/components/AddToBag";
+import CheckoutNow from "@/app/components/CheckoutNow";
 import ImageGallery from "@/app/components/ImageGallery";
 import { fullProduct } from "@/app/interface";
 import { client } from "@/app/lib/sanity";
@@ -75,6 +77,27 @@ export default async function ProductPge({
             <div className="mb-6 flex items-center gap-2 text-gray-500">
               <Truck className="w-6 h-6" />
               <span className="text-sm">2-4 Day Shipping</span>
+            </div>
+
+            <div className="flex gap-2.5">
+              <AddToBag
+                currency="PHP"
+                description={data.description}
+                image={data.image[0]}
+                name={data.name}
+                price={data.price}
+                key={data._id}
+                price_id={data.price_id}
+              />
+              <CheckoutNow
+                currency="PHP"
+                description={data.description}
+                image={data.image[0]}
+                name={data.name}
+                price={data.price}
+                key={data._id}
+                price_id={data.price_id}
+              />
             </div>
 
             <p className="mt-12 text-base text-gray-500 tracking-wide">
