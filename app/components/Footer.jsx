@@ -1,28 +1,52 @@
-export default function Footer() {
-    return (
-        <footer className="bg-white text-gray-500 border-t border-solid border-gray-300 mx-auto max-w-2xl lg:max-w-7xl lg:px-8">
-        <div className="container mx-auto p-4 lg:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold mb-2 ">
-              {" "}
-              Shop<span className="text-primary">Ease</span>
-            </h3>
-            <p className="text-sm">
-              ShopEase is your all-in-one solution for a seamless and enjoyable
-              shopping journey.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="/">Home</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+import Image from "next/image";
+import Link from "next/link";
+
+import { footerLinks } from "../constants";
+
+const Footer = () => (
+  <footer className='max-w-[1440px] mx-auto flex flex-col text-black-100  mt-5 border-t border-gray-100'>
+    <div className='flex max-md:flex-col flex-wrap justify-between gap-5 sm:px-16 px-6 py-10'>
+      <div className='flex flex-col justify-start items-start gap-6'>
+        <Image src='/logo.png' alt='logo' width={118} height={18} className='object-contain' />
+        <p className='text-base text-gray-700'>
+        WheelsAway 2024 <br />
+          All Rights Reserved &copy;
+        </p>
       </div>
-    </footer>
-  );
-}
+
+      <div className="footer__links">
+        {footerLinks.map((item) => (
+          <div key={item.title} className="footer__link">
+            <h3 className="font-bold">{item.title}</h3>
+            <div className="flex flex-col gap-5">
+              {item.links.map((link) => (
+                <Link
+                  key={link.title}
+                  href={link.url}
+                  className="text-gray-500"
+                >
+                  {link.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div className='flex justify-between items-center flex-wrap mt-10 border-t border-gray-100 sm:px-16 px-6 py-10'>
+      <p>@2024 WheelsAway. All rights reserved</p>
+
+      <div className="footer__copyrights-link">
+        <Link href="/" className="text-gray-500">
+          Privacy & Policy
+        </Link>
+        <Link href="/" className="text-gray-500">
+          Terms & Condition
+        </Link>
+      </div>
+    </div>
+  </footer>
+);
+
+export default Footer;
